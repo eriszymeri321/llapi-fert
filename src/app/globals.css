@@ -298,6 +298,12 @@ footer { border-top: 1px solid var(--line); padding: 44px 0 20px; background: #0
 .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; margin: 22px 0 28px; }
 .footer-links a { color: var(--muted); font-size: .78rem; }
 .footer-links a:hover { color: var(--orange-light); }
+.footer-location { display: grid; grid-template-columns: minmax(220px, .7fr) minmax(0, 1.3fr); align-items: stretch; gap: clamp(18px, 3vw, 34px); margin: 28px 0; border: 1px solid var(--line); border-radius: 12px; padding: clamp(16px, 2.4vw, 26px); background: var(--surface); text-align: left; }
+.footer-location-copy { align-self: center; }
+.footer-location-copy h3 { margin: 8px 0; color: var(--text); font-size: clamp(1.2rem, 2.4vw, 1.6rem); }
+.footer-location-copy p { margin-bottom: 16px; color: var(--muted); font-size: .8rem; }
+.footer-location-copy .button { min-height: 42px; font-size: .72rem; }
+.footer-location iframe { display: block; width: 100%; min-height: 260px; border: 0; border-radius: 8px; background: var(--surface-raised); }
 .footer-content .copyright { margin: 0; border-top: 1px solid var(--line); padding-top: 16px; font-size: .72rem; }
 .preview-notice { margin: 0; border-bottom: 1px solid rgba(233, 134, 50, .28); padding: 8px 16px; background: #20180f; color: var(--orange-light); font-size: .7rem; font-weight: 600; text-align: center; }
 
@@ -374,6 +380,8 @@ footer { border-top: 1px solid var(--line); padding: 44px 0 20px; background: #0
   .clear-filter { grid-column: 1 / -1; }
   .admin-columns { grid-template-columns: 1fr; }
   .footer-links { gap: 10px 16px; }
+  .footer-location { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  .footer-location iframe { min-height: 230px; }
 }
 
 @media (max-width: 560px) {
@@ -439,6 +447,8 @@ footer { border-top: 1px solid var(--line); padding: 44px 0 20px; background: #0
   .contact-callout h2 { font-size: 1.8rem; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-links { gap: 9px 14px; }
+  .footer-location { grid-template-columns: 1fr; margin: 22px 0; padding: 16px; }
+  .footer-location iframe { min-height: 230px; }
   .admin-head { align-items: flex-start; flex-direction: column; gap: 4px; }
   .admin-head h1 { margin-bottom: 12px; }
   .admin-tabs { gap: 16px; margin-bottom: 18px; }
