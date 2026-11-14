@@ -1,0 +1,3 @@
+import Link from "next/link";
+import Image from "next/image";
+export default function Header(){return <header className="site-header"><div className="container nav-wrap"><Link href="/#krye" className="brand"><Image src="/images/logo.png" alt="Llapi Fert" width={116} height={74}/><span>LLAPI FERT<small>BETON • BESUESHMËRI • TRADITË</small></span></Link><nav aria-label="Navigimi kryesor"><Link href="/#krye">Kryefaqja</Link><Link href="/#rreth">Rreth nesh</Link><Link href="/products">Produktet</Link><Link href="/#fotot">Fotot</Link><Link href="/contact">Kontakt</Link><Link className="nav-cta" href="/contact">Na kontaktoni <span>↗</span></Link></nav></div></header>}

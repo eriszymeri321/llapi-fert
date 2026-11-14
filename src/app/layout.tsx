@@ -1,0 +1,3 @@
+import type {Metadata} from "next"; import "./globals.css"; import Header from "@/components/Header"; import Footer from "@/components/Footer";
+export const metadata:Metadata={title:"Llapi Fert | Beton me traditë që nga 1995",description:"Gypa betoni, fertraj dhe shtylla betoni për projektet tuaja."};
+export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="sq"><body><Header/>{!process.env.DATABASE_URL&&<div className="preview-notice">Pamje paraprake me produkte demonstrative. Kërkesat aktivizohen pasi të lidhet Neon.</div>}<main>{children}</main><Footer/></body></html>}
