@@ -9,7 +9,19 @@ export default async function Home() {
   const products = await getProducts();
   return <>
     <section className="hero" id="krye">
-      <Image src="/images/fabrika.jpg" alt="Kamioni i Llapi Fert duke transportuar produktet e kompanisë" fill priority className="hero-photo" />
+      <div className="hero-picture">
+        <picture>
+          <source media="(max-width: 760px)" srcSet="/images/fotojahomepagepermobile.webp" />
+          <Image
+            src="/images/fotojahomepageperdesktop.jpg"
+            alt="Kamioni dhe hapësira e Llapi Fert"
+            fill
+            priority
+            sizes="100vw"
+            className="hero-photo"
+          />
+        </picture>
+      </div>
       <div className="hero-shade" />
       <div className="container hero-content">
         <span className="eyebrow light">QË NGA VITI 1995</span>
