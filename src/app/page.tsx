@@ -3,6 +3,22 @@ import Link from "next/link";
 import { getProducts } from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
 
+const companyPhotos = [
+  { src: "/images/gallery/01-historia.jpg", alt: "Pamje historike e punës së Llapi Fert" },
+  { src: "/images/gallery/02-historia.jpg", alt: "Prodhimi i produkteve në vitet e para" },
+  { src: "/images/gallery/03-historia.jpg", alt: "Ekipi i Llapi Fert gjatë punës" },
+  { src: "/images/gallery/04-historia.jpg", alt: "Punëtorët dhe prodhimi i kompanisë" },
+  { src: "/images/gallery/05-fabrika.jpg", alt: "Oborri dhe hapësirat e Llapi Fert" },
+  { src: "/images/gallery/06-prodhimi.jpg", alt: "Puna në hapësirën prodhuese" },
+  { src: "/images/gallery/07-ngarkimi.jpg", alt: "Ngarkimi i produkteve për dërgesë" },
+  { src: "/images/gallery/08-transporti.jpg", alt: "Kamioni i Llapi Fert në oborrin e kompanisë" },
+  { src: "/images/gallery/09-transporti.jpg", alt: "Flota e transportit të Llapi Fert" },
+  { src: "/images/gallery/10-dergesa.jpg", alt: "Kamion i ngarkuar me produkte betoni" },
+  { src: "/images/gallery/11-dergesa.jpg", alt: "Dërgesa e produkteve të Llapi Fert" },
+  { src: "/images/gallery/12-sot.jpg", alt: "Transporti i produkteve sot" },
+  { src: "/images/gallery/13-sot.jpg", alt: "Pamje e kompanisë Llapi Fert sot" },
+];
+
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
@@ -61,11 +77,11 @@ export default async function Home() {
 
     <section className="reference-section field-section" id="fotot">
       <div className="container">
-        <div className="reference-title"><span className="eyebrow">NGA FABRIKA TEK JU</span><h2>Fotot</h2></div>
-        <div className="field-gallery">
-          <figure><Image src="/images/transporti-llapi-fert.jpg" alt="Kamioni i Llapi Fert me produktet e kompanisë" fill sizes="(max-width:700px) 100vw, 33vw" /><figcaption>Transporti i Llapi Fert</figcaption></figure>
-          <figure><Image src="/images/ngarkimi-produkteve.jpg" alt="Ngarkimi i produkteve të betonit" fill sizes="(max-width:700px) 100vw, 33vw" /><figcaption>Ngarkimi i produkteve</figcaption></figure>
-          <figure><Image src="/images/dergesa-llapi-fert.jpg" alt="Dërgesa e produkteve te klientët" fill sizes="(max-width:700px) 100vw, 33vw" /><figcaption>Gati për projektin tuaj</figcaption></figure>
+        <div className="reference-title gallery-heading"><span className="eyebrow">NGA FABRIKA TEK JU</span><h2>Fotot</h2><p>Disa nga pamjet e kompanisë sonë, që nga themelimi në vitin 1995 e deri më sot.</p></div>
+        <div className="field-gallery company-gallery">
+          {companyPhotos.map((photo, index) => <figure className={`gallery-item gallery-item-${index % 8}`} style={{ animationDelay: `${index * 55}ms` }} key={photo.src}>
+            <Image src={photo.src} alt={photo.alt} fill sizes="(max-width:700px) 50vw, (max-width:1100px) 33vw, 25vw" />
+          </figure>)}
         </div>
       </div>
     </section>
