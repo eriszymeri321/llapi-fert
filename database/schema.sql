@@ -39,6 +39,10 @@ CREATE TABLE IF NOT EXISTS orders (
   business_number text,
   location text,
   message text,
+  completion_message_sent_at timestamptz,
+  completion_message_id text,
+  completion_message_error text,
+  whatsapp_opt_in boolean NOT NULL DEFAULT false,
   status text NOT NULL DEFAULT 'new' CHECK (status IN ('new','contacted','processing','completed','shipped','cancelled')),
   created_at timestamptz NOT NULL DEFAULT now(),
   updated_at timestamptz NOT NULL DEFAULT now()
@@ -59,6 +63,10 @@ ALTER TABLE order_items ADD COLUMN IF NOT EXISTS unit_price numeric(12,2) CHECK 
 ALTER TABLE order_items ADD COLUMN IF NOT EXISTS line_total numeric(12,2) CHECK (line_total IS NULL OR line_total >= 0);
 ALTER TABLE orders ADD COLUMN IF NOT EXISTS business_number text;
 ALTER TABLE orders ADD COLUMN IF NOT EXISTS location text;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS completion_message_sent_at timestamptz;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS completion_message_id text;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS completion_message_error text;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS whatsapp_opt_in boolean NOT NULL DEFAULT false;
 ALTER TABLE orders ALTER COLUMN email DROP NOT NULL;
 ALTER TABLE orders DROP CONSTRAINT IF EXISTS orders_status_check;
 ALTER TABLE orders ADD CONSTRAINT orders_status_check CHECK (status IN ('new','contacted','processing','completed','shipped','cancelled'));

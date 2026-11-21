@@ -49,7 +49,7 @@ export default function QuoteForm({ products, selectedProduct }: { products: Quo
     const values = new FormData(form);
     try {
       const response = await fetch("/api/quotes", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
-        companyName: values.get("companyName"), businessNumber: values.get("businessNumber"), phone: values.get("phone"), location: values.get("location"), message: values.get("message"),
+        companyName: values.get("companyName"), businessNumber: values.get("businessNumber"), phone: values.get("phone"), location: values.get("location"), whatsappOptIn: values.get("whatsappOptIn") === "on", message: values.get("message"),
         items: quotes.map(({ product, quantity, specifications }) => ({ product: product?.id, quantity, specifications }))
       }) });
       const result = await response.json(); setMessage(result.message);
@@ -92,6 +92,7 @@ export default function QuoteForm({ products, selectedProduct }: { products: Quo
     })}
     <button type="button" className="button button-outline add-line" onClick={addProduct}>＋ Shto produkt tjetër (gypa ose shtylla)</button>
     <div className="price-summary"><div className="price-summary-head"><span>ÇMIMI I KOMPLET POROSISË</span><strong>{total === null ? "Konfirmohet nga ekipi" : money(total)}</strong></div><p>Çmimi llogaritet sipas dimensioneve dhe sasive të zgjedhura.</p></div>
+    <label className="whatsapp-consent"><input required type="checkbox" name="whatsappOptIn" /> Pajtohem të marr njoftim në WhatsApp për përfundimin e kësaj porosie.</label>
     <label>Detaje shtesë<textarea name="message" rows={3} maxLength={2000} placeholder="Shënime për porosinë (opsionale)" /></label>
     <button className="button button-dark" disabled={busy}>{busy ? "Duke dërguar..." : "Dërgo porosinë"}<span>↗</span></button>
     {message && <p className="form-message" role="status">{message}</p>}
