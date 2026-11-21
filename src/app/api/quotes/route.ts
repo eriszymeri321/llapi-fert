@@ -8,7 +8,6 @@ const schema = z.object({
   businessNumber: z.string().trim().min(3).max(40),
   phone: z.string().trim().min(6).max(40),
   location: z.string().trim().min(2).max(200),
-  whatsappOptIn: z.literal(true),
   items: z.array(z.object({ product: z.uuid(), quantity: z.coerce.number().int().min(1).max(100000), specifications: z.record(z.string(), z.string()).default({}) })).min(1).max(50),
   message: z.string().trim().max(2000).optional().nullable()
 });
@@ -34,8 +33,8 @@ export async function POST(request: Request) {
         return NextResponse.json({ message: "Një produkt ose dimension nuk është i vlefshëm." }, { status: 400 });
       }
       const order = await client.query(
-        "INSERT INTO orders(customer_name,phone,email,message,business_number,location,whatsapp_opt_in) VALUES($1,$2,NULL,$3,$4,$5,$6) RETURNING id",
-        [values.companyName, values.phone, values.message || null, values.businessNumber, values.location, values.whatsappOptIn]
+        "INSERT INTO orders(customer_name,phone,email,message,business_number,location) VALUES($1,$2,NULL,$3,$4,$5) RETURNING id",
+        [values.companyName, values.phone, values.message || null, values.businessNumber, values.location]
       );
       for (const entry of pricedItems) {
         if (!entry) continue;

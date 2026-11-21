@@ -16,15 +16,7 @@ Web aplikacion në gjuhën shqipe për katalogun, ofertat dhe menaxhimin e Llapi
 5. Instalo varësitë me `npm install` dhe krijo administratorin me `npm run admin:create`. Komanda kërkon emrin/emailin dhe fjalëkalimin pa e shfaqur atë në terminal.
 6. Nise me `npm run dev`, pastaj vizito `http://localhost:3000`.
 
-Për njoftimin automatik në WhatsApp, krijo një aplikacion në Meta WhatsApp Business Platform, regjistro numrin dërgues, gjenero access token dhe krijo/aprovo një template Utility me trupin: `Përshëndetje {{1}}, porosia juaj ka përfunduar dhe është në proces të ardhjes. Të gjitha të mirat nga Llapi Fert.` Klienti duhet të pajtohet në formular për të marrë njoftimin. Vendose të njëjtin emër dhe gjuhë të template-it në variablat më poshtë (gjuha parazgjedhje `sq`). Në Vercel shtoji si Environment Variables dhe bëj redeploy.
-
-```text
-WHATSAPP_PHONE_NUMBER_ID=<ID i numrit dërgues në Meta>
-WHATSAPP_ACCESS_TOKEN=<token i WhatsApp Business>
-WHATSAPP_TEMPLATE_NAME=llapifert_porosia_perfunduar
-WHATSAPP_TEMPLATE_LANGUAGE=sq
-WHATSAPP_API_VERSION=v27.0
-```
+Kur admini e shënon porosinë si “Përfunduar”, paneli hap WhatsApp-in me numrin e klientit dhe mesazhin e gatshëm. Admini e dërgon mesazhin duke shtypur **Dërgo** në WhatsApp.
 
 ## Llogaria e administratorit
 
@@ -36,7 +28,7 @@ Skema nuk krijon kredenciale të paracaktuara. Pasi të jetë lidhur databaza, p
 - Katalog, kërkim me tekst, filtrim sipas kategorisë dhe faqe individuale produkti.
 - Formular porosie pa llogari, me të dhënat e kompanisë, numrin e biznesit, telefonin, lokacionin dhe shumë rreshta produktesh/dimensionesh.
 - Çmim i llogaritur në ndërfaqe dhe i verifikuar sërish në server për fertraj, gypa dhe shtylla; dimensioni, çmimi për copë dhe totali ruhen te porosia.
-- Panel administratori për produktet dhe porositë, me statuset “Në proces”, “Përfunduar” dhe “Nisur / në rrugë”; shënimi si “Përfunduar” dërgon template-in e miratuar në WhatsApp dhe lejon riprovimin nëse dërgimi dështon.
+- Panel administratori për produktet dhe porositë, me statuset “Në proces”, “Përfunduar” dhe “Nisur / në rrugë”; shënimi si “Përfunduar” hap WhatsApp-in me mesazh të gatshëm për klientin.
 - NextAuth JWT session me role `customer` dhe `admin`.
 
 ## Struktura

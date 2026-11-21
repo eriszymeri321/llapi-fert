@@ -276,11 +276,7 @@ main { min-height: 55vh; }
 .remove-line { border: 0; padding: 3px 0; background: transparent; color: #ff9381; font-size: .72rem; }
 .line-price { color: var(--text); font-size: .88rem; font-weight: 700; }
 .add-line { align-self: flex-start; }
-.whatsapp-success { color: #9be6b0 !important; }
-.whatsapp-retry { border-top: 1px solid var(--line); margin-top: 12px; padding-top: 12px; }
-.whatsapp-retry p { color: #ffc17d !important; }
-.quote-form .whatsapp-consent { display: grid; grid-template-columns: 20px 1fr; align-items: start; gap: 10px; border: 1px solid var(--line); border-radius: 7px; padding: 13px; color: var(--muted); font-size: .76rem; font-weight: 500; }
-.quote-form .whatsapp-consent input { width: 18px; min-height: 18px; margin: 2px 0 0; accent-color: var(--orange); }
+.whatsapp-link { margin-top: 8px; color: #9be6b0; }
 @media (max-width: 640px) { .dimension-row { grid-template-columns: 1fr 1fr; } .dimension-row .line-price { align-self: center; } }
 .contact-layout { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: start; gap: clamp(24px, 6vw, 88px); }
 .contact-info, .contact-form-wrap { min-width: 0; border: 1px solid var(--line); border-radius: 12px; padding: clamp(20px, 3vw, 34px); background: var(--surface); }
