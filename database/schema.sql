@@ -36,8 +36,10 @@ CREATE TABLE IF NOT EXISTS orders (
   customer_name text NOT NULL CHECK (length(customer_name) BETWEEN 2 AND 120),
   phone text NOT NULL CHECK (length(phone) BETWEEN 6 AND 40),
   email text NOT NULL,
+  business_number text,
+  location text,
   message text,
-  status text NOT NULL DEFAULT 'new' CHECK (status IN ('new','contacted','completed','cancelled')),
+  status text NOT NULL DEFAULT 'new' CHECK (status IN ('new','contacted','processing','completed','shipped','cancelled')),
   created_at timestamptz NOT NULL DEFAULT now(),
   updated_at timestamptz NOT NULL DEFAULT now()
 );
@@ -55,6 +57,12 @@ CREATE TABLE IF NOT EXISTS order_items (
 ALTER TABLE order_items ADD COLUMN IF NOT EXISTS specifications jsonb NOT NULL DEFAULT '{}'::jsonb;
 ALTER TABLE order_items ADD COLUMN IF NOT EXISTS unit_price numeric(12,2) CHECK (unit_price IS NULL OR unit_price >= 0);
 ALTER TABLE order_items ADD COLUMN IF NOT EXISTS line_total numeric(12,2) CHECK (line_total IS NULL OR line_total >= 0);
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS business_number text;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS location text;
+ALTER TABLE orders ALTER COLUMN email DROP NOT NULL;
+ALTER TABLE orders DROP CONSTRAINT IF EXISTS orders_status_check;
+ALTER TABLE orders ADD CONSTRAINT orders_status_check CHECK (status IN ('new','contacted','processing','completed','shipped','cancelled'));
+ALTER TABLE order_items DROP CONSTRAINT IF EXISTS order_items_order_id_product_id_key;
 CREATE INDEX IF NOT EXISTS products_category_idx ON products(category_id);
 CREATE INDEX IF NOT EXISTS orders_created_idx ON orders(created_at DESC);
 CREATE INDEX IF NOT EXISTS orders_status_idx ON orders(status);

@@ -10,7 +10,7 @@ Web aplikacion në gjuhën shqipe për katalogun, ofertat dhe menaxhimin e Llapi
 ## Nisja lokale
 
 1. Krijo projektin PostgreSQL në Neon dhe hap SQL Editor për branch-in e projektit.
-2. Ekzekuto tërë skedarin `database/schema.sql`. Ai krijon tabelat, lidhjet, kufizimet, kategoritë dhe tri produkte demonstruese pa të dhëna klientësh. Nëse e ke ekzekutuar më parë, ekzekutoje përsëri pas këtij ndryshimi; `ALTER TABLE ... IF NOT EXISTS` shton fushat e dimensioneve/çmimeve pa fshirë kërkesat ekzistuese.
+2. Ekzekuto tërë skedarin `database/schema.sql`. Ai krijon tabelat, lidhjet, kufizimet, kategoritë dhe tri produkte demonstruese pa të dhëna klientësh. Nëse e ke ekzekutuar më parë, ekzekutoje përsëri pas këtij ndryshimi; migrimi shton fushat e biznesit/lokacionit dhe statuset e reja pa fshirë porositë ekzistuese.
 3. Te Neon, shtyp **Connect**, zgjidh branch/database/role dhe kopjo pooled connection string-un (hosti zakonisht përmban `-pooler`).
 4. Kopjo `.env.example` në `.env.local`, vendos connection string-un te `DATABASE_URL`, gjenero sekretin me `openssl rand -base64 32` dhe vendose te `NEXTAUTH_SECRET`, pastaj vendos `NEXTAUTH_URL=http://localhost:3000`.
 5. Instalo varësitë me `npm install` dhe krijo administratorin me `npm run admin:create`. Komanda kërkon emrin/emailin dhe fjalëkalimin pa e shfaqur atë në terminal.
@@ -24,9 +24,9 @@ Skema nuk krijon kredenciale të paracaktuara. Pasi të jetë lidhur databaza, p
 
 - Faqja kryesore dhe faqet “Rreth nesh”, kontakt, privatësi dhe kushte përdorimi.
 - Katalog, kërkim me tekst, filtrim sipas kategorisë dhe faqe individuale produkti.
-- Formular oferte i validuar; porosia dhe artikulli/sasia ruhen në një transaksion PostgreSQL.
+- Formular porosie pa llogari, me të dhënat e kompanisë, numrin e biznesit, telefonin, lokacionin dhe shumë rreshta produktesh/dimensionesh.
 - Çmim i llogaritur në ndërfaqe dhe i verifikuar sërish në server për fertraj, gypa dhe shtylla; dimensioni, çmimi për copë dhe totali ruhen te porosia.
-- Panel administratori për shtim, ndryshim, çaktivizim produktesh dhe ndryshim të statusit të kërkesave.
+- Panel administratori për produktet dhe porositë, me statuset “Në proces”, “Përfunduar” dhe “Nisur / në rrugë”; për porositë e nisura ofrohet lidhje WhatsApp me mesazh të gatshëm.
 - NextAuth JWT session me role `customer` dhe `admin`.
 
 ## Struktura

@@ -7,13 +7,13 @@ export function calculateQuote(slug: string, quantity: number, spec: QuoteSpecif
   if (!Number.isInteger(quantity) || quantity < 1 || quantity > 100000) return null;
   if (slug === "fertraj-per-shtepi") {
     const length = Number(spec.length_m);
-    if (!Number.isFinite(length) || length < 1.6 || length > 6.6) return null;
+    if (!Number.isFinite(length) || length < 1.6 || length > 6.8) return null;
     let rate: number;
     let reinforcement: string;
     if (length < 3.8) { rate = 2; reinforcement = "pa shufër metalike"; }
     else if (length < 4.8) { rate = 2.5; reinforcement = "me 1 shufër metalike"; }
     else if (length < 5.8) { rate = 2.7; reinforcement = "me 2 shufra metalike"; }
-    else return { unitPrice: null, lineTotal: null, label: "Kërko ofertë", formula: null, note: "Çmimi për dimensionin 5.80–6.60 m konfirmohet nga ekipi." };
+    else return { unitPrice: null, lineTotal: null, label: "Kërko ofertë", formula: null, note: "Çmimi për dimensionin 5.80–6.80 m konfirmohet nga ekipi." };
     const unitPrice = money(length * rate);
     return { unitPrice, lineTotal: money(unitPrice * quantity), label: `${length.toFixed(2).replace(".", ",")} m · ${reinforcement} · ${rate.toFixed(2).replace(".", ",")} €/m`, formula: `${quantity} copë × ${length.toFixed(2)} m × ${rate.toFixed(2)} €/m` };
   }
