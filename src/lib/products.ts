@@ -3,9 +3,9 @@ import { Product } from "@/lib/types";
 
 // Read-only preview catalog used before a Neon database is configured.
 const previewProducts: Product[] = [
-  {id:"00000000-0000-4000-8000-000000000001",name:"Fertraj për Shtëpi",slug:"fertraj-per-shtepi",description:"Fertraj të betonit për shtëpi me cilësi të garantuar. Të përdorur për mbështetje strukturore dhe mbyllje të ndërtesave me siguri maksimale.",category_name:"Fertraj për shtëpi",image_url:"/images/fertraj.jpg",price:null,price_label:"Kërko ofertë",featured:true},
-  {id:"00000000-0000-4000-8000-000000000002",name:"Gypa Betoni",slug:"gypa-betoni",description:"Gypat betoni të cilësisë së lartë për projekte ndërtimi të ndryshme dhe hapje të bunarve. Të prodhuar me materiale cilësore për qëndrueshmëri maksimale.",category_name:"Gypa betoni",image_url:"/images/gypa-betoni.jpg",price:null,price_label:"Kërko ofertë",featured:true},
-  {id:"00000000-0000-4000-8000-000000000003",name:"Shtylla Betoni",slug:"shtylla-betoni",description:"Shtylla betoni të cilësisë së lartë për projekte ndërtimi të ndryshme. Të prodhuar me materiale cilësore për qëndrueshmëri maksimale dhe rezistencë afatgjatë.",category_name:"Shtylla betoni",image_url:"/images/stuba-betoni.jpg",price:null,price_label:"Kërko ofertë",featured:true}
+  {id:"00000000-0000-4000-8000-000000000001",name:"Fertraj për Shtëpi",slug:"fertraj-per-shtepi",description:"Fertraj të betonit për shtëpi me cilësi të garantuar. Të përdorur për mbështetje strukturore dhe mbyllje të ndërtesave me siguri maksimale.",category_name:"Fertraj për shtëpi",image_url:"/images/fertraj.jpg",price:null,price_label:"Çmimi konfirmohet nga ekipi",featured:true},
+  {id:"00000000-0000-4000-8000-000000000002",name:"Gypa Betoni",slug:"gypa-betoni",description:"Gypat betoni të cilësisë së lartë për projekte ndërtimi të ndryshme dhe hapje të bunarve. Të prodhuar me materiale cilësore për qëndrueshmëri maksimale.",category_name:"Gypa betoni",image_url:"/images/gypa-betoni.jpg",price:null,price_label:"Çmimi konfirmohet nga ekipi",featured:true},
+  {id:"00000000-0000-4000-8000-000000000003",name:"Shtylla Betoni",slug:"shtylla-betoni",description:"Shtylla betoni të cilësisë së lartë për projekte ndërtimi të ndryshme. Të prodhuar me materiale cilësore për qëndrueshmëri maksimale dhe rezistencë afatgjatë.",category_name:"Shtylla betoni",image_url:"/images/stuba-betoni.jpg",price:null,price_label:"Çmimi konfirmohet nga ekipi",featured:true}
 ];
 
 export async function getProducts(category?: string, q?: string): Promise<Product[]> {

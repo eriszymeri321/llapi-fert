@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getProducts } from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
+import CompanyGallery from "@/components/CompanyGallery";
 
 const companyPhotos = [
   { src: "/images/gallery/01-historia.jpg", alt: "Pamje historike e punës së Llapi Fert" },
@@ -23,6 +24,12 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const products = await getProducts();
+  const homepageProducts = products.slice(0, 3);
+  const fertrajIndex = homepageProducts.findIndex(product => /fertraj/i.test(`${product.slug} ${product.category_name}`));
+  if (fertrajIndex !== -1 && fertrajIndex !== 1) {
+    const [fertraj] = homepageProducts.splice(fertrajIndex, 1);
+    homepageProducts.splice(1, 0, fertraj);
+  }
   return <>
     <section className="hero" id="krye">
       <div className="hero-picture">
@@ -42,7 +49,7 @@ export default async function Home() {
       <div className="container hero-content">
         <span className="eyebrow light">QË NGA VITI 1995</span>
         <h1>Besim dhe cilësi<br />në çdo ndërtim</h1>
-        <p>Prodhues të gypave të betonit dhe fertrajve për shtëpi në Kosovë.</p>
+        <p>Prodhim fertraje dhe gypash betoni, me shitje me shumicë.</p>
         <div className="hero-actions">
           <Link href="/products" className="button button-lime">Shiko produktet</Link>
           <Link href="/contact" className="text-link light">Na kontaktoni <span>↗</span></Link>
@@ -56,7 +63,7 @@ export default async function Home() {
         <div className="reference-about-grid">
           <article className="reference-panel">
             <h3>Kompania Jonë</h3>
-            <p>Llapi Fert u themelua në vitin 1995 dhe është kompani lider në prodhimin e gypave të betonit dhe fertrajve për shtëpi. Me përvojë të gjatë në treg, ne ofrojmë produkte me cilësi të lartë për projekte të ndryshme ndërtimi.</p>
+            <p>Llapi Fert është ndërmarrje e themeluar në vitin 1995, e specializuar në prodhimin e fertrajeve dhe gypave të betonit, si dhe në shitjen e tyre me shumicë.</p>
             <p>Fokusi ynë kryesor është kënaqësia e klientit dhe ofrimi i zgjidhjeve të qëndrueshme për çdo nevojë ndërtimi.</p>
           </article>
           <article className="reference-panel">
@@ -69,20 +76,19 @@ export default async function Home() {
 
     <section className="reference-section products reference-products" id="products">
       <div className="container">
-        <div className="reference-title"><span className="eyebrow">PRODHIM BETONI</span><h2>Produktet tona</h2></div>
-        <div className="product-grid">{products.slice(0, 3).map(product => <ProductCard key={product.id} product={product} />)}</div>
+        <div className="reference-title"><span className="eyebrow">PRODUKTE NDËRTIMI</span><h2>Produktet tona</h2></div>
+        <div className="product-grid">{homepageProducts.map(product => <ProductCard key={product.id} product={product} />)}</div>
         <div className="reference-more"><Link className="button button-outline" href="/products">Shiko të gjitha produktet <span>↗</span></Link></div>
       </div>
     </section>
 
     <section className="reference-section field-section" id="fotot">
       <div className="container">
-        <div className="reference-title gallery-heading"><span className="eyebrow">NGA FABRIKA TEK JU</span><h2>Fotot</h2><p>Disa nga pamjet e kompanisë sonë, që nga themelimi në vitin 1995 e deri më sot.</p></div>
-        <div className="field-gallery company-gallery">
-          {companyPhotos.map((photo, index) => <figure className={`gallery-item gallery-item-${index % 8}`} style={{ animationDelay: `${index * 55}ms` }} key={photo.src}>
-            <Image src={photo.src} alt={photo.alt} fill sizes="(max-width:700px) 50vw, (max-width:1100px) 33vw, 25vw" />
-          </figure>)}
+        <div className="gallery-heading">
+          <div className="gallery-title-copy"><span className="eyebrow">NGA FABRIKA TEK JU</span><h2>Fotot</h2></div>
+          <p>Disa nga pamjet e kompanisë sonë, që nga themelimi në vitin 1995 e deri më sot.</p>
         </div>
+        <CompanyGallery photos={companyPhotos} />
       </div>
     </section>
 

@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS products (
   description text NOT NULL,
   image_url text NOT NULL,
   price numeric(12,2) CHECK (price IS NULL OR price >= 0),
-  price_label text NOT NULL DEFAULT 'Kërko ofertë',
+  price_label text NOT NULL DEFAULT 'Çmimi konfirmohet nga ekipi',
   featured boolean NOT NULL DEFAULT false,
   active boolean NOT NULL DEFAULT true,
   created_at timestamptz NOT NULL DEFAULT now(),
@@ -74,7 +74,7 @@ INSERT INTO categories(name,slug,description) VALUES
  ('Shtylla betoni','shtylla-betoni','Shtylla betoni për projekte të ndryshme ndërtimi.')
 ON CONFLICT(slug) DO NOTHING;
 INSERT INTO products(category_id,name,slug,description,image_url,price,price_label,featured)
-SELECT c.id,v.name,v.slug,v.description,v.image_url,NULL,'Kërko ofertë',v.featured FROM (VALUES
+SELECT c.id,v.name,v.slug,v.description,v.image_url,NULL,'Çmimi konfirmohet nga ekipi',v.featured FROM (VALUES
  ('Fertraj për shtëpi','Fertraj për Shtëpi','fertraj-per-shtepi','Fertraj të betonit për shtëpi me cilësi të garantuar. Të përdorur për mbështetje strukturore dhe mbyllje të ndërtesave me siguri maksimale.','/images/fertraj.jpg',true),
  ('Gypa betoni','Gypa Betoni','gypa-betoni','Gypat betoni të cilësisë së lartë për projekte ndërtimi të ndryshme dhe hapje të bunarve. Të prodhuar me materiale cilësore për qëndrueshmëri maksimale.','/images/gypa-betoni.jpg',true),
  ('Shtylla betoni','Shtylla Betoni','shtylla-betoni','Shtylla betoni të cilësisë së lartë për projekte ndërtimi të ndryshme. Të prodhuar me materiale cilësore për qëndrueshmëri maksimale dhe rezistencë afatgjatë.','/images/stuba-betoni.jpg',true)

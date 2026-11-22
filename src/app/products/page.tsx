@@ -1,3 +1,30 @@
-import {getProducts,getCategories} from "@/lib/products";import ProductCard from "@/components/ProductCard";import Link from "next/link";
-export const dynamic="force-dynamic";
-export default async function Products({searchParams}:{searchParams:Promise<{category?:string;q?:string}>}){const params=await searchParams;const [products,categories]=await Promise.all([getProducts(params.category,params.q),getCategories()]);return <div className="container page-pad"><div className="page-intro"><span className="eyebrow">KATALOGU</span><h1>Produkte të ndërtuara<br/>për të qëndruar.</h1><p>Gjeni produktet e duhura për projektin tuaj. Për çmime dhe porosi, kërkoni ofertë.</p></div><form className="filters"><input name="q" defaultValue={params.q} placeholder="Kërko produkt..."/><select name="category" defaultValue={params.category||""}><option value="">Të gjitha kategoritë</option>{categories.map(c=><option key={c.slug} value={c.slug}>{c.name}</option>)}</select><button className="button button-dark">Filtro</button><Link className="clear-filter" href="/products">Pastro</Link></form>{products.length?<div className="product-grid">{products.map(p=><ProductCard key={p.id} product={p}/>)}</div>:<div className="empty-state">Nuk u gjet asnjë produkt për këtë kërkim.</div>}</div>}
+import { getProducts } from "@/lib/products";
+import ProductCard from "@/components/ProductCard";
+
+export const dynamic = "force-dynamic";
+
+export default async function Products() {
+  const products = await getProducts();
+  const fertrajIndex = products.findIndex(product => /fertraj/i.test(`${product.slug} ${product.category_name}`));
+  if (fertrajIndex !== -1 && fertrajIndex !== 1 && products.length >= 3) {
+    const [fertraj] = products.splice(fertrajIndex, 1);
+    products.splice(1, 0, fertraj);
+  }
+
+  return (
+    <div className="container page-pad">
+      <div className="page-intro">
+        <span className="eyebrow">KATALOGU</span>
+        <h1>Produktet tona</h1>
+        <p>Gypa betoni, fertraj dhe shtylla betoni për shitje me shumicë.</p>
+      </div>
+      {products.length ? (
+        <div className="product-grid">
+          {products.map(product => <ProductCard key={product.id} product={product} />)}
+        </div>
+      ) : (
+        <div className="empty-state">Produktet do të shfaqen këtu së shpejti.</div>
+      )}
+    </div>
+  );
+}
