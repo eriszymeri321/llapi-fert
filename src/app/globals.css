@@ -377,6 +377,11 @@ footer { border-top: 1px solid var(--line); padding: 44px 0 20px; background: #0
 .order-top select { width: auto; max-width: 100%; min-height: 40px; padding: 8px 10px; }
 .order-card p { margin: 8px 0; color: var(--muted); font-size: .8rem; overflow-wrap: anywhere; }
 .order-card blockquote { margin: 12px 0 0; border-left: 2px solid var(--orange); padding-left: 12px; color: var(--muted); font-size: .8rem; overflow-wrap: anywhere; }
+.admin-order-items { display: grid; gap: 9px; margin: 14px 0; }
+.admin-order-items > strong { color: var(--text); font-size: .83rem; }
+.admin-order-line { display: grid; gap: 4px; border: 1px solid var(--line); border-radius: 8px; padding: 12px; background: rgba(255,255,255,.025); color: var(--muted); font-size: .76rem; overflow-wrap: anywhere; }
+.admin-order-line b { color: var(--orange-light); font-size: .82rem; }
+.order-card blockquote strong { color: var(--text); }
 
 @media (max-width: 980px) {
   .site-header { height: 74px; }
