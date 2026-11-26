@@ -17,7 +17,7 @@ function formatOrderDate(value:string) {
   return new Intl.DateTimeFormat("sq-AL", { dateStyle: "long", timeStyle: "short", timeZone: "Europe/Belgrade" }).format(new Date(value));
 }
 
-function formatSpecification(value:string) {
+function formatSpecification(value:Record<string,string>) {
   const labels:Record<string,string> = { diameter_mm:"Diametri", length_m:"Gjatësia", width_cm:"Gjerësia", height_cm:"Lartësia", thickness_cm:"Trashësia" };
   return Object.entries(value || {}).map(([key, detail]) => `${labels[key] || key.replaceAll("_", " ")}: ${detail}${key === "diameter_mm" ? " mm" : key === "length_m" ? " m" : key.endsWith("_cm") ? " cm" : ""}`).join(" · ");
 }
