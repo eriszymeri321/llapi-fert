@@ -64,6 +64,7 @@ export default async function Home() {
           <article className="reference-panel">
             <h3>Kompania Jonë</h3>
             <p>Llapi Fert është ndërmarrje e themeluar në vitin 1995, e specializuar në prodhimin e fertrajeve dhe gypave të betonit, si dhe në shitjen e tyre me shumicë.</p>
+            <p>Produktet tona i shesim me shumicë në tërë Kosovën, përmes një rrjeti prej mbi 80 kompanish partnere.</p>
             <p>Fokusi ynë kryesor është kënaqësia e klientit dhe ofrimi i zgjidhjeve të qëndrueshme për çdo nevojë ndërtimi.</p>
           </article>
           <article className="reference-panel">
