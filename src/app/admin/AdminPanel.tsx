@@ -40,9 +40,8 @@ async function createOrderPdf(order:Order) {
       const logo = await new Promise<string>((resolve,reject) => { const reader=new FileReader(); reader.onload=()=>resolve(String(reader.result)); reader.onerror=()=>reject(reader.error); reader.readAsDataURL(logoBlob); });
       pdf.addImage(logo,"PNG",margin,8,32,25);
     } catch { pdf.setTextColor(255,255,255); pdf.setFont("helvetica","bold"); pdf.setFontSize(15); pdf.text("LLAPI FERT",margin,23); }
-    pdf.setTextColor(255,255,255); pdf.setFont("helvetica","bold"); pdf.setFontSize(17); pdf.text(continued?"DETAJET E POROSISË":"FLETËPËRMBLEDHJE E POROSISË",pageWidth-margin,17,{align:"right"});
+    pdf.setTextColor(255,255,255); pdf.setFont("helvetica","bold"); pdf.setFontSize(17); pdf.text(continued?"DETAJET E POROSISË":"FLETËDËRGESË E POROSISË",pageWidth-margin,17,{align:"right"});
     pdf.setFont("helvetica","normal"); pdf.setFontSize(9); pdf.setTextColor(225,225,225); pdf.text(`Nr. LF-${order.id.slice(0,8).toUpperCase()}`,pageWidth-margin,25,{align:"right"});
-    pdf.text(`Dokumenti u krijua: ${date(new Date())}`,pageWidth-margin,32,{align:"right"});
   };
   await drawHeader();
   let y = 55;
@@ -73,7 +72,6 @@ async function createOrderPdf(order:Order) {
   if(y+39>270){pdf.addPage();await drawHeader(true);y=55;}
   y+=3;pdf.setDrawColor(...orange);pdf.setLineWidth(.6);pdf.line(pageWidth-84,y,pageWidth-margin,y);y+=8;
   pdf.setFont("helvetica","bold");pdf.setFontSize(11);pdf.setTextColor(...dark);pdf.text("Totali i porosisë",pageWidth-84,y);pdf.setTextColor(...orange);pdf.text(order.items.every(item=>item.line_total!==null)?money(String(order.items.reduce((sum,item)=>sum+Number(item.line_total),0))):"Konfirmohet nga ekipi",pageWidth-margin,y,{align:"right"});
-  if(order.message){y+=12;pdf.setTextColor(...dark);pdf.setFont("helvetica","bold");pdf.setFontSize(9);pdf.text("Kërkesa / shënimi i klientit",margin,y);y+=5;pdf.setFont("helvetica","normal");pdf.setFontSize(9);const msg=pdf.splitTextToSize(order.message,pageWidth-margin*2) as string[];pdf.text(msg,margin,y);y+=msg.length*4.5;}
   const noteY=Math.min(Math.max(y+12,245),263);
   pdf.setFillColor(248,243,237);pdf.roundedRect(margin,noteY,pageWidth-margin*2,22,2,2,"F");pdf.setFillColor(...orange);pdf.rect(margin,noteY,2,22,"F");
   pdf.setTextColor(...dark);pdf.setFont("helvetica","bold");pdf.setFontSize(8.5);pdf.text("NJOFTIM",margin+7,noteY+7);
